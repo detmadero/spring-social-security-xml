@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:social="http://www.springframework.org/schema/social"
+	xmlns:facebook="http://www.springframework.org/schema/social/facebook"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd
+		http://www.springframework.org/schema/social http://docs.spring.io/autorepo/schema/spring-social/current/social/spring-social.xsd
+		http://www.springframework.org/schema/social/facebook http://docs.spring.io/autorepo/schema/spring-social-facebook/2.0.3.RELEASE/social/spring-social-facebook.xsd">
+
+	<!--
+        Configures the connection repository. This application uses JDBC
+        connection repository which saves connection details to database.
+        This repository uses the data source bean for obtaining database
+        connection.
+    -->
+    <social:jdbc-connection-repository/>
+    
+    <bean id="usersConnectionRepository" class="org.springframework.social.connect.jdbc.JdbcUsersConnectionRepository">
+        <constructor-arg index="0" ref="dataSource" />
+        <constructor-arg index="1" ref="connectionFactoryLocator" />
+        <constructor-arg index="2" ref="textEncryptor" />
+        
+	    <!-- 
+	    	Configures to:
+			After login to social.
+			Automatically create corresponding USER_ACCOUNT if not already.
+		-->
+        <property name="connectionSignUp" ref="myConnectionSignUp" />    
+    </bean>
+    
+    <bean id="myConnectionSignUp" class="com.mcnc.spring.security.signup.MyConnectionSignUp" >
+    	<constructor-arg index="0" ref="myUserAccountDAO" />
+    </bean>
+    
+    <bean id="myUserAccountDAO" class="com.mcnc.spring.security.dao.MyUserAccountDAO">
+    	<constructor-arg index="0" ref="dataSource" />
+    </bean>
+	
+	<bean id="connectionFactoryLocator" class="org.springframework.social.connect.support.ConnectionFactoryRegistry" >
+    	<property name="connectionFactories">
+            <list>
+                <bean class="org.springframework.social.facebook.connect.FacebookConnectionFactory">
+				    <constructor-arg index="0" value="${facebook.app.id}" />
+				    <constructor-arg index="1" value="${facebook.app.secret}" />                
+				</bean>
+            </list>
+        </property>
+	</bean>
+	
+	<bean id="socialAuthenticationServiceLocator" class="org.springframework.social.security.SocialAuthenticationServiceRegistry">
+	    <property name="authenticationServices">
+	        <list>
+	            <bean class="org.springframework.social.facebook.security.FacebookAuthenticationService">
+	                <constructor-arg index="0" value="${facebook.app.id}" />
+	                <constructor-arg index="1" value="${facebook.app.secret}" />
+	                <property name="defaultScope" value="${facebook.scope}" />
+	            </bean>
+	        </list>
+	    </property>
+	</bean>
+	
+	<!-- This bean encrypts the authorization details of the connection. In our example, the authorization details are stored as plain text. 
+		DO NOT USE THIS IN PRODUCTION. -->
+	<bean id="textEncryptor" class="org.springframework.security.crypto.encrypt.Encryptors" factory-method="noOpText" />
+	
+    <!-- This bean manages the connection flow between the account provider and the example application. -->
+    <bean id="connectController" class="org.springframework.social.connect.web.ConnectController" autowire="constructor" />
+</beans>

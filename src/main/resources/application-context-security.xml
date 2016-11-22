@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:security="http://www.springframework.org/schema/security"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-4.0.xsd">
+
+	<security:http use-expressions="true">
+		<!-- Enables Spring Security CSRF protection -->
+		<security:csrf disabled="true" />
+
+		<security:intercept-url pattern="/" access="permitAll" />
+		<security:intercept-url pattern="/signup" access="permitAll" />
+		<security:intercept-url pattern="/login" access="permitAll" />
+		<security:intercept-url pattern="/logout" access="permitAll" />
+
+		<security:intercept-url pattern="/userInfo"	access="hasRole('ROLE_USER')" />
+
+		<security:form-login login-page="/login"
+			login-processing-url="/j_spring_security_check" 
+			default-target-url="/userInfo"
+			authentication-failure-url="/login?error=true" 
+			username-parameter="username"
+			password-parameter="password" />
+
+		<!-- Configures the logout function -->
+		<security:logout logout-url="/logout"
+			logout-success-url="/" delete-cookies="JESSIONID" />
+
+		<!-- Adds social authentication filter to the Spring Security filter chain. -->
+		<security:custom-filter ref="socialAuthenticationFilter" before="PRE_AUTH_FILTER" />
+	</security:http>
+	
+	<security:authentication-manager alias="authenticationManager">
+		<security:authentication-provider user-service-ref="userDetailsService" />
+		<security:authentication-provider ref="socialAuthenticationProvider" />
+	</security:authentication-manager>
+
+	<!-- Configures the social authentication filter which integrates Spring Social with Spring Security. -->
+	<bean id="socialAuthenticationFilter" class="org.springframework.social.security.SocialAuthenticationFilter">
+		<constructor-arg index="0" ref="authenticationManager" />
+		<constructor-arg index="1" ref="userIdSource" />
+		<constructor-arg index="2" ref="usersConnectionRepository" />
+		<constructor-arg index="3" ref="socialAuthenticationServiceLocator" />
+
+		<property name="signupUrl" value="/signup" />
+	</bean>
+
+	<!-- This bean determines the account ID of the user. The example application uses the username as the account ID. -->
+	<bean id="userIdSource" class="org.springframework.social.security.AuthenticationNameUserIdSource" />
+		
+	<!-- Configures the social authentication provider which processes authentication 
+		requests made by using supported social authentication services (FB, Twitter and so on). -->
+	<bean id="socialAuthenticationProvider" class="org.springframework.social.security.SocialAuthenticationProvider">
+		<constructor-arg index="0" ref="usersConnectionRepository" />
+		<constructor-arg index="1" ref="socialUserDetailsService" />
+	</bean>
+
+	<!-- This bean is used to load the user specific data when social sign in is used. -->
+	<bean id="socialUserDetailsService" class="com.mcnc.spring.security.service.MySocialUserDetailsService" autowire="constructor" />
+
+	<!-- This bean is load the user specific data when form login is used. -->
+	<bean id="userDetailsService" class="com.mcnc.spring.security.service.MyUserDetailsService" autowire="constructor" />
+    
+</beans>
