@@ -81,7 +81,7 @@ public class MainController {
 
 	@RequestMapping(value = { "/signin" }, method = RequestMethod.GET)
 	public String signInPage(Model model) {
-		return "redirect:/login";
+		return "redirect:/login?auth=false";
 	}
 
 	@RequestMapping(value = { "/signup" }, method = RequestMethod.GET)

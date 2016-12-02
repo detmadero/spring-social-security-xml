@@ -10,6 +10,7 @@ import org.springframework.jdbc.core.support.JdbcDaoSupport;
 import org.springframework.social.connect.Connection;
 import org.springframework.social.connect.ConnectionKey;
 import org.springframework.social.connect.UserProfile;
+import org.springframework.social.security.SocialAuthenticationException;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -95,6 +96,11 @@ public class MyUserAccountDAO extends JdbcDaoSupport {
 		UserProfile userProfile = connection.fetchUserProfile();
 
 		String email = userProfile.getEmail();
+		
+		if ( email == null ) {
+			throw new SocialAuthenticationException("User doesn't provide email to our application.");
+		}
+		
 		MyUserAccount account = this.findByEmail(email);
 		if (account != null) {
 			return account;
@@ -109,8 +115,7 @@ public class MyUserAccountDAO extends JdbcDaoSupport {
 		String id = UUID.randomUUID().toString();
 
 		String userName_prefix = userProfile.getFirstName().trim()
-				.toLowerCase()//
-				+ "_" + userProfile.getLastName().trim().toLowerCase();
+				+ " " + userProfile.getLastName().trim();
 
 		String userName = this.findAvailableUserName(userName_prefix);
 
