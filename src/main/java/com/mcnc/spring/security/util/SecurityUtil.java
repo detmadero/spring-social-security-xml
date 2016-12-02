@@ -10,11 +10,11 @@ import com.mcnc.spring.security.user.MyUserDetails;
 public class SecurityUtil {
 
 	// Auto login.
-	public static void logInUser(MyUserAccount user) {
+	public static void logInUser(MyUserAccount myUserAccount) {
 
-		MyUserDetails userDetails = new MyUserDetails(user);
+		MyUserDetails myUserDetails = new MyUserDetails(myUserAccount);
 
-		Authentication authentication = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
+		Authentication authentication = new UsernamePasswordAuthenticationToken(myUserDetails, null, myUserDetails.getAuthorities());
 		SecurityContextHolder.getContext().setAuthentication(authentication);
 	}
 
