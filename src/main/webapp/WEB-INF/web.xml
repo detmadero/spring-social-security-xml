@@ -4,6 +4,7 @@
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
 	id="WebApp_ID" version="3.0">
 	<display-name>spring-social-security-xml</display-name>
+	
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
@@ -19,9 +20,11 @@
 		<servlet-name>spring-security</servlet-name>
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
+	
 	<session-config>
 		<session-timeout>10</session-timeout>
 	</session-config>
+	
 	<filter>
 		<filter-name>springSecurityFilterChain</filter-name>
 		<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
