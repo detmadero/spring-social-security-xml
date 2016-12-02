@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <title>Login Page</title>
 </head>
-<body>
+<body onload="confirmRequestFacebookPermission();">
 	<jsp:include page="_menu.jsp" />
 	<h2>Social Login</h2>
 
@@ -19,6 +19,9 @@
 			Login Failed!!!<br /> Reason :
 			${sessionScope["SPRING_SECURITY_LAST_EXCEPTION"].message}
 		</div>
+	</c:if>
+	<c:if test="${param.auth == 'false'}">
+		
 	</c:if>
 	<form action="${pageContext.request.contextPath}/j_spring_security_check" method='POST'>
 		<table>
