@@ -1,13 +1,13 @@
-package com.mcnc.spring.security.service;
+package com.mcnc.spring.social.security.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.social.security.SocialUserDetails;
 import org.springframework.social.security.SocialUserDetailsService;
 
-import com.mcnc.spring.security.dao.MyUserAccountDAO;
-import com.mcnc.spring.security.model.MyUserAccount;
-import com.mcnc.spring.security.user.MySocialUserDetails;
+import com.mcnc.spring.social.security.dao.MyUserAccountDAO;
+import com.mcnc.spring.social.security.model.MyUserAccount;
+import com.mcnc.spring.social.security.user.MySocialUserDetails;
 
 public class MySocialUserDetailsService implements SocialUserDetailsService {
 	

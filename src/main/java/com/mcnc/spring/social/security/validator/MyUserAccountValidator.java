@@ -1,4 +1,4 @@
-package com.mcnc.spring.security.validator;
+package com.mcnc.spring.social.security.validator;
 
 import org.apache.commons.validator.routines.EmailValidator;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,9 +7,9 @@ import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 
-import com.mcnc.spring.security.dao.MyUserAccountDAO;
-import com.mcnc.spring.security.form.MyUserAccountForm;
-import com.mcnc.spring.security.model.MyUserAccount;
+import com.mcnc.spring.social.security.dao.MyUserAccountDAO;
+import com.mcnc.spring.social.security.form.MyUserAccountForm;
+import com.mcnc.spring.social.security.model.MyUserAccount;
 
 @Component
 public class MyUserAccountValidator implements Validator {

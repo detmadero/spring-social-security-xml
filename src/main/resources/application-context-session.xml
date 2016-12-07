@@ -12,9 +12,9 @@
 		<property name="maxInactiveIntervalInSeconds" value="1800000" />
 		<property name="cookieSerializer">
 			<bean class="org.springframework.session.web.http.DefaultCookieSerializer">
-				<property name="domainName" value="^.+?\\.(\\w+\\.[a-z]+)$"/>
-				<property name="cookiePath" value="/"/>
-				<property name="cookieName" value="JSESSIONID"/>
+				<property name="domainName" value="${domainName}"/>
+				<property name="cookiePath" value="${cookiePath}"/>
+				<property name="cookieName" value="${cookieName}"/>
 			</bean>
 		</property>
 	</bean>

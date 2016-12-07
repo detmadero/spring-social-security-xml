@@ -1,4 +1,4 @@
-package com.mcnc.spring.security.model;
+package com.mcnc.spring.social.security.model;
 
 import java.io.Serializable;
 

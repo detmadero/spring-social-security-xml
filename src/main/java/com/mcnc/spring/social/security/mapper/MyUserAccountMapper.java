@@ -1,11 +1,11 @@
-package com.mcnc.spring.security.mapper;
+package com.mcnc.spring.social.security.mapper;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import org.springframework.jdbc.core.RowMapper;
 
-import com.mcnc.spring.security.model.MyUserAccount;
+import com.mcnc.spring.social.security.model.MyUserAccount;
 
 public class MyUserAccountMapper implements RowMapper<MyUserAccount> {
 

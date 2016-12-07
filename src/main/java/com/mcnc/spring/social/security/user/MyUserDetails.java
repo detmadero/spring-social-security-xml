@@ -1,4 +1,4 @@
-package com.mcnc.spring.security.user;
+package com.mcnc.spring.social.security.user;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -6,12 +6,11 @@ import java.util.List;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.social.security.SocialUserDetails;
+import org.springframework.security.core.userdetails.UserDetails;
 
-import com.mcnc.spring.security.model.MyUserAccount;
+import com.mcnc.spring.social.security.model.MyUserAccount;
 
-
-public class MySocialUserDetails implements SocialUserDetails {
+public class MyUserDetails implements UserDetails {
 	
 	/**
 	 * 
@@ -21,8 +20,8 @@ public class MySocialUserDetails implements SocialUserDetails {
 	private List<GrantedAuthority> list = new ArrayList<GrantedAuthority>();
 	private MyUserAccount myUserAccount;
 
-	public MySocialUserDetails(MyUserAccount account) {
-		this.myUserAccount = account;
+	public MyUserDetails(MyUserAccount myUserAccount) {
+		this.myUserAccount = myUserAccount;
 		String role = myUserAccount.getRole();
 		
 		GrantedAuthority grant = new SimpleGrantedAuthority(role);
@@ -62,11 +61,6 @@ public class MySocialUserDetails implements SocialUserDetails {
 	@Override
 	public boolean isEnabled() {
 		return myUserAccount.isEnabled();
-	}
-
-	@Override
-	public String getUserId() {
-		return myUserAccount.getId();
 	}
 
 }

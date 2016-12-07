@@ -1,4 +1,4 @@
-package com.mcnc.spring.security.service;
+package com.mcnc.spring.social.security.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -6,9 +6,9 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import com.mcnc.spring.security.dao.MyUserAccountDAO;
-import com.mcnc.spring.security.model.MyUserAccount;
-import com.mcnc.spring.security.user.MyUserDetails;
+import com.mcnc.spring.social.security.dao.MyUserAccountDAO;
+import com.mcnc.spring.social.security.model.MyUserAccount;
+import com.mcnc.spring.social.security.user.MyUserDetails;
 
 @Service
 public class MyUserDetailsService implements UserDetailsService {

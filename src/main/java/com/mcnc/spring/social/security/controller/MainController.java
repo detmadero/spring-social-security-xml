@@ -1,4 +1,4 @@
-package com.mcnc.spring.security.controller;
+package com.mcnc.spring.social.security.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -20,11 +20,11 @@ import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.mcnc.spring.security.dao.MyUserAccountDAO;
-import com.mcnc.spring.security.form.MyUserAccountForm;
-import com.mcnc.spring.security.model.MyUserAccount;
-import com.mcnc.spring.security.util.SecurityUtil;
-import com.mcnc.spring.security.validator.MyUserAccountValidator;
+import com.mcnc.spring.social.security.dao.MyUserAccountDAO;
+import com.mcnc.spring.social.security.form.MyUserAccountForm;
+import com.mcnc.spring.social.security.model.MyUserAccount;
+import com.mcnc.spring.social.security.util.SecurityUtil;
+import com.mcnc.spring.social.security.validator.MyUserAccountValidator;
 
 @Controller
 // Need to use RedirectAttributes

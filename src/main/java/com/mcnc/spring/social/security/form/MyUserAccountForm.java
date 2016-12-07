@@ -1,4 +1,4 @@
-package com.mcnc.spring.security.form;
+package com.mcnc.spring.social.security.form;
 
 import org.springframework.social.connect.Connection;
 import org.springframework.social.connect.ConnectionKey;

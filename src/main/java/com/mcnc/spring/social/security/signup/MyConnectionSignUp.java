@@ -1,10 +1,10 @@
-package com.mcnc.spring.security.signup;
+package com.mcnc.spring.social.security.signup;
 
 import org.springframework.social.connect.Connection;
 import org.springframework.social.connect.ConnectionSignUp;
 
-import com.mcnc.spring.security.dao.MyUserAccountDAO;
-import com.mcnc.spring.security.model.MyUserAccount;
+import com.mcnc.spring.social.security.dao.MyUserAccountDAO;
+import com.mcnc.spring.social.security.model.MyUserAccount;
 
 public class MyConnectionSignUp implements ConnectionSignUp {
 

@@ -57,9 +57,9 @@
 	</bean>
 
 	<!-- This bean is used to load the user specific data when social sign in is used. -->
-	<bean id="socialUserDetailsService" class="com.mcnc.spring.security.service.MySocialUserDetailsService" autowire="constructor" />
+	<bean id="socialUserDetailsService" class="com.mcnc.spring.social.security.service.MySocialUserDetailsService" autowire="constructor" />
 
 	<!-- This bean is load the user specific data when form login is used. -->
-	<bean id="userDetailsService" class="com.mcnc.spring.security.service.MyUserDetailsService" autowire="constructor" />
+	<bean id="userDetailsService" class="com.mcnc.spring.social.security.service.MyUserDetailsService" autowire="constructor" />
     
 </beans>

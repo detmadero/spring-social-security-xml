@@ -10,7 +10,7 @@
 	<import resource="application-context-social.xml" />
 	<import resource="application-context-session.xml" />
 
-	<context:component-scan base-package="com.mcnc.spring.security.*" />
+	<context:component-scan base-package="com.mcnc.spring.social.security.*" />
 
 	<bean id="messageSource"
 		class="org.springframework.context.support.ResourceBundleMessageSource">

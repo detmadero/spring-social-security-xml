@@ -1,4 +1,4 @@
-package com.mcnc.spring.security.dao;
+package com.mcnc.spring.social.security.dao;
 
 import java.util.UUID;
 
@@ -14,9 +14,9 @@ import org.springframework.social.security.SocialAuthenticationException;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.mcnc.spring.security.form.MyUserAccountForm;
-import com.mcnc.spring.security.mapper.MyUserAccountMapper;
-import com.mcnc.spring.security.model.MyUserAccount;
+import com.mcnc.spring.social.security.form.MyUserAccountForm;
+import com.mcnc.spring.social.security.mapper.MyUserAccountMapper;
+import com.mcnc.spring.social.security.model.MyUserAccount;
 
 @Repository
 @Transactional

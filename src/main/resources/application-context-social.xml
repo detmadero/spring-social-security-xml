@@ -31,11 +31,11 @@
         <property name="connectionSignUp" ref="myConnectionSignUp" />    
     </bean>
     
-    <bean id="myConnectionSignUp" class="com.mcnc.spring.security.signup.MyConnectionSignUp" >
+    <bean id="myConnectionSignUp" class="com.mcnc.spring.social.security.signup.MyConnectionSignUp" >
     	<constructor-arg index="0" ref="myUserAccountDAO" />
     </bean>
     
-    <bean id="myUserAccountDAO" class="com.mcnc.spring.security.dao.MyUserAccountDAO">
+    <bean id="myUserAccountDAO" class="com.mcnc.spring.social.security.dao.MyUserAccountDAO">
     	<constructor-arg index="0" ref="dataSource" />
     </bean>
 	
