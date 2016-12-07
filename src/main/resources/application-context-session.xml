@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd">
+
+	<context:component-scan base-package="org.springframework.session.config.annotation.web.http" />
+    
+    <bean class="org.springframework.session.jdbc.config.annotation.web.http.JdbcHttpSessionConfiguration">		
+		<property name="maxInactiveIntervalInSeconds" value="1800000" />
+		<property name="cookieSerializer">
+			<bean class="org.springframework.session.web.http.DefaultCookieSerializer">
+				<property name="domainName" value="^.+?\\.(\\w+\\.[a-z]+)$"/>
+				<property name="cookiePath" value="/"/>
+				<property name="cookieName" value="JSESSIONID"/>
+			</bean>
+		</property>
+	</bean>
+	
+</beans>

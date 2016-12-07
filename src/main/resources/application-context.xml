@@ -8,6 +8,7 @@
 	<import resource="application-context-web.xml" />
 	<import resource="application-context-security.xml" />
 	<import resource="application-context-social.xml" />
+	<import resource="application-context-session.xml" />
 
 	<context:component-scan base-package="com.mcnc.spring.security.*" />
 
